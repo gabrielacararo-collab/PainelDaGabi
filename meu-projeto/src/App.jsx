@@ -14,11 +14,17 @@ export default function PainelIdeias() {
     event.preventDefault();
     
     if (novaIdeia.trim() === "") {
-      setErro("Ideia não criada!");
+      setErro("Digite sua ideia antes de adicionar!");
       return;
     }
 
-    setIdeias([...ideias, novaIdeia]);
+    const ideia = {
+      id: Date.now(),
+      texto: novaIdeia.trim(),
+      feita: false,
+    }
+
+    setIdeias([...ideias, ideia]);
     setNovaIdeia("");
   }
 
@@ -39,8 +45,11 @@ export default function PainelIdeias() {
       {erro && <p style={{ color: "red" }}>{erro}</p>}
 
       <ul>
-        {ideias.map((ideia, index) => (
-          <li key={index}>{ideia}</li>
+        {ideias.map((ideia) => (
+          <li key={ideia.id}>
+             <input type="checkbox" />
+            {ideia.texto}
+          </li>
         ))}
       </ul>
     </div>
