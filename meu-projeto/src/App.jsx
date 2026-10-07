@@ -14,7 +14,7 @@ export default function PainelIdeias() {
     event.preventDefault();
     
     if (novaIdeia.trim() === "") {
-      setErro("Digite sua ideia antes de adicionar!");
+      setErro("Digite sua ideia antes de adicionar");
       return;
     }
 
@@ -42,6 +42,12 @@ export default function PainelIdeias() {
     );
   }
 
+  function removerIdeia(id) {
+    setIdeias (
+      ideias.filter ((ideia) => ideia.id !== id)
+    )
+  }
+
   return (
     <div>
       <h1>PAINEL DE IDEIAS</h1>
@@ -67,10 +73,22 @@ export default function PainelIdeias() {
              onChange={() => concluirIdeia(ideia.id)}
              />
             
-            {ideia.texto}
+           <span className={ideia.feita ? "feita" : ""}> 
+           {ideia.texto}
+           </span>
+
+
+           <button onClick={()=>removerIdeia(ideia.id)}>
+            ✖️
+           </button>
           </li>
         ))}
       </ul>
+
+        <p>
+          {`${ideias.length} Idieas no painel · ${ideias.filter((ideia) => ideia.feita).length} concluidas`}
+        </p>
+
     </div>
   );
 }
