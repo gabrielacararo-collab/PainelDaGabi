@@ -49,7 +49,7 @@ export default function PainelIdeias() {
   }
 
   return (
-    <div>
+    <div className="painel">
       <h1>PAINEL DE IDEIAS</h1>
       <p>Anote aqui suas ideias de projeto para não perdê-las</p>
       
