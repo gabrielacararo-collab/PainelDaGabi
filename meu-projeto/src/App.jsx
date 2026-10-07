@@ -28,6 +28,20 @@ export default function PainelIdeias() {
     setNovaIdeia("");
   }
 
+  function concluirIdeia(id) {
+    setIdeias (
+      ideias.map ((ideia) =>{
+        if(ideia.id === id){
+          return{
+            ...ideia,
+            feita: !ideia.feita
+          }
+        };
+        return ideia;
+      })
+    );
+  }
+
   return (
     <div>
       <h1>PAINEL DE IDEIAS</h1>
@@ -47,7 +61,12 @@ export default function PainelIdeias() {
       <ul>
         {ideias.map((ideia) => (
           <li key={ideia.id}>
-             <input type="checkbox" />
+             
+             <input type="checkbox" 
+             checked={ideia.feita}
+             onChange={() => concluirIdeia(ideia.id)}
+             />
+            
             {ideia.texto}
           </li>
         ))}
